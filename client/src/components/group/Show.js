@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {retrieve, reset} from '../../actions/lesson/show';
-import { del, loading, error } from '../../actions/lesson/delete';
+import {retrieve, reset} from '../../actions/group/show';
+import { del, loading, error } from '../../actions/group/delete';
 
 class Show extends Component {
   static propTypes = {
@@ -51,20 +51,8 @@ class Show extends Component {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">description</th>
-              <td>{item['description']}</td>
-            </tr>
-            <tr>
-              <th scope="row">teacher</th>
-              <td>{item['teacher']}</td>
-            </tr>
-            <tr>
-              <th scope="row">tasks</th>
-              <td>{item['tasks']}</td>
-            </tr>
-            <tr>
-              <th scope="row">groups</th>
-              <td>{item['groups']}</td>
+              <th scope="row">lessons</th>
+              <td>{item['lessons']}</td>
             </tr>
             <tr>
               <th scope="row">code</th>
@@ -78,7 +66,7 @@ class Show extends Component {
         </table>
       }
       <Link to=".." className="btn btn-primary">Back to list</Link>
-      {item && <Link to={`/lessons/edit/${encodeURIComponent(item['@id'])}`}>
+      {item && <Link to={`/groups/edit/${encodeURIComponent(item['@id'])}`}>
         <button className="btn btn-warning">Edit</button>
         </Link>
       }
@@ -89,12 +77,12 @@ class Show extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.lesson.show.error,
-    loading: state.lesson.show.loading,
-    retrieved:state.lesson.show.retrieved,
-    deleteError: state.lesson.del.error,
-    deleteLoading: state.lesson.del.loading,
-    deleted: state.lesson.del.deleted,
+    error: state.group.show.error,
+    loading: state.group.show.loading,
+    retrieved:state.group.show.retrieved,
+    deleteError: state.group.del.error,
+    deleteLoading: state.group.del.loading,
+    deleted: state.group.del.deleted,
   };
 };
 

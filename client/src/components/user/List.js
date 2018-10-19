@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { list, reset } from '../../actions/lesson/list';
-import { success } from '../../actions/lesson/delete';
+import { list, reset } from '../../actions/user/list';
+import { success } from '../../actions/user/delete';
 import { itemToLinks } from '../../utils/helpers';
 
 class List extends Component {
@@ -30,7 +30,7 @@ class List extends Component {
 
   render() {
     return <div>
-      <h1>Lesson List</h1>
+      <h1>User List</h1>
 
       {this.props.loading && <div className="alert alert-info">Loading...</div>}
       {this.props.deletedItem && <div className="alert alert-success">{this.props.deletedItem['@id']} deleted.</div>}
@@ -42,12 +42,9 @@ class List extends Component {
         <thead>
           <tr>
             <th>Id</th>
-            <th>description</th>
-            <th>teacher</th>
-            <th>tasks</th>
-            <th>groups</th>
-            <th>code</th>
-            <th>name</th>
+            <th>username</th>
+            <th>email</th>
+            <th>admin</th>
             <th colSpan={2}></th>
           </tr>
         </thead>
@@ -55,12 +52,9 @@ class List extends Component {
         {this.props.data['hydra:member'] && this.props.data['hydra:member'].map(item =>
           <tr key={item['@id']}>
             <th scope="row"><Link to={`show/${encodeURIComponent(item['@id'])}`}>{item['@id']}</Link></th>
-            <td>{item['description'] ? itemToLinks(item['description']) : ''}</td>
-            <td>{item['teacher'] ? itemToLinks(item['teacher']) : ''}</td>
-            <td>{item['tasks'] ? itemToLinks(item['tasks']) : ''}</td>
-            <td>{item['groups'] ? itemToLinks(item['groups']) : ''}</td>
-            <td>{item['code'] ? itemToLinks(item['code']) : ''}</td>
-            <td>{item['name'] ? itemToLinks(item['name']) : ''}</td>
+            <td>{item['username'] ? itemToLinks(item['username']) : ''}</td>
+            <td>{item['email'] ? itemToLinks(item['email']) : ''}</td>
+            <td>{item['admin'] ? itemToLinks(item['admin']) : ''}</td>
             <td>
               <Link to={`show/${encodeURIComponent(item['@id'])}`}>
                 <span className="fa fa-search" aria-hidden="true"/>
@@ -99,10 +93,10 @@ class List extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.lesson.list.data,
-    error: state.lesson.list.error,
-    loading: state.lesson.list.loading,
-    deletedItem: state.lesson.del.deleted,
+    data: state.user.list.data,
+    error: state.user.list.error,
+    loading: state.user.list.loading,
+    deletedItem: state.user.del.deleted,
   };
 };
 

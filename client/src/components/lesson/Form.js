@@ -29,6 +29,7 @@ class Form extends Component {
       <Field component={this.renderField} name="description" type="text" placeholder="The description of the lesson." required={true}/>
       <Field component={this.renderField} name="teacher" type="text" placeholder="The teacher for this lesson." required={true}/>
       <Field component={this.renderField} name="tasks" type="text" placeholder="All tasks for this lesson." />
+      <Field component={this.renderField} name="groups" type="text" placeholder="All groups that have this lesson." />
       <Field component={this.renderField} name="code" type="text" placeholder="The lesson's code." required={true}/>
       <Field component={this.renderField} name="name" type="text" placeholder="The name of the lesson." required={true}/>
 

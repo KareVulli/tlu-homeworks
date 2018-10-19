@@ -16,9 +16,13 @@ import lesson from './reducers/lesson/';
 import lessonRoutes from './routes/lesson';
 import task from './reducers/task/';
 import taskRoutes from './routes/task';
+import group from './reducers/group/';
+import groupRoutes from './routes/group';
+import user from './reducers/user/';
+import userRoutes from './routes/user';
 
 const store = createStore(
-  combineReducers({routing, form, lesson, task}),
+  combineReducers({routing, form, lesson, task, group, user}),
   applyMiddleware(thunk),
 );
 
@@ -31,6 +35,8 @@ ReactDom.render(
         <Route path="/" component={Welcome} strict={true} exact={true}/>
         { lessonRoutes }
         { taskRoutes }
+        { groupRoutes }
+        { userRoutes }
         <Route render={() => <h1>Not Found</h1>}/>
       </Switch>
     </Router>

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { list, reset } from '../../actions/lesson/list';
-import { success } from '../../actions/lesson/delete';
+import { list, reset } from '../../actions/group/list';
+import { success } from '../../actions/group/delete';
 import { itemToLinks } from '../../utils/helpers';
 
 class List extends Component {
@@ -30,7 +30,7 @@ class List extends Component {
 
   render() {
     return <div>
-      <h1>Lesson List</h1>
+      <h1>Group List</h1>
 
       {this.props.loading && <div className="alert alert-info">Loading...</div>}
       {this.props.deletedItem && <div className="alert alert-success">{this.props.deletedItem['@id']} deleted.</div>}
@@ -42,10 +42,7 @@ class List extends Component {
         <thead>
           <tr>
             <th>Id</th>
-            <th>description</th>
-            <th>teacher</th>
-            <th>tasks</th>
-            <th>groups</th>
+            <th>lessons</th>
             <th>code</th>
             <th>name</th>
             <th colSpan={2}></th>
@@ -55,10 +52,7 @@ class List extends Component {
         {this.props.data['hydra:member'] && this.props.data['hydra:member'].map(item =>
           <tr key={item['@id']}>
             <th scope="row"><Link to={`show/${encodeURIComponent(item['@id'])}`}>{item['@id']}</Link></th>
-            <td>{item['description'] ? itemToLinks(item['description']) : ''}</td>
-            <td>{item['teacher'] ? itemToLinks(item['teacher']) : ''}</td>
-            <td>{item['tasks'] ? itemToLinks(item['tasks']) : ''}</td>
-            <td>{item['groups'] ? itemToLinks(item['groups']) : ''}</td>
+            <td>{item['lessons'] ? itemToLinks(item['lessons']) : ''}</td>
             <td>{item['code'] ? itemToLinks(item['code']) : ''}</td>
             <td>{item['name'] ? itemToLinks(item['name']) : ''}</td>
             <td>
@@ -99,10 +93,10 @@ class List extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.lesson.list.data,
-    error: state.lesson.list.error,
-    loading: state.lesson.list.loading,
-    deletedItem: state.lesson.del.deleted,
+    data: state.group.list.data,
+    error: state.group.list.error,
+    loading: state.group.list.loading,
+    deletedItem: state.group.del.deleted,
   };
 };
 
