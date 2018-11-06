@@ -1,5 +1,0 @@
-apiVersion: v1
-description: A Helm chart for an TLU Homeworks API
-name: api
-version: 0.3.0
-icon: https://api-platform.com/logo-250x250.png
